@@ -1,0 +1,638 @@
+---
+title: "Sumário"
+output: learnr::tutorial
+fig_caption: no
+progressive: true
+allow_skip: true
+runtime: shiny_prerendered
+template: flatly
+toc: true
+papersize: a4
+theme: cerulean
+---
+
+
+<div class="img1">
+<img  src="https://upload.wikimedia.org/wikipedia/commons/1/1c/S%C3%ADmbolo_da_UnB_%28para_fundo_branco%29.png" style="position:absolute;top:20px;right:80px;width:110px;"/> 
+</div>
+
+<style>
+
+ body{
+            background-image: url("https://wallpaperplay.com/walls/full/0/2/a/228145.jpg");
+            
+font: normal 11pt Arial;
+color: black;
+text-align: justify;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+        
+div.texto1 {
+  font: normal 10pt Arial;
+  color: orange;
+  text-align: left;
+}
+
+div.img1 {
+  opacity: 0.5;
+}
+
+div.polaroid2 {
+
+float: right;
+  width: 20%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 2px;
+  margin-left: 10px;
+}
+
+
+div.container {
+  text-align: left;
+  padding: 2px 2px;
+  height:30px
+}
+
+div.polaroid3 {
+
+float: left;
+  width: 20%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 2px;
+  margin-right: 10px;
+}
+
+
+div.container2 {
+  text-align: center;
+  padding: 2px 2px;
+  height:30px;
+}
+
+div.grafico {
+
+float: left;
+  width: 40%;
+  margin-bottom: 2px;
+  margin-right: 55px;
+}
+
+
+div.imageColumn {
+   float: left;
+   width: 25%;
+   padding: 10px;
+
+}
+
+div.imageColumn2 {
+   float: left;
+   width: 50%;
+   padding: 2px;
+   margin-top: 2px;
+}
+
+div.imageColumn3 {
+   float: left;
+   width: 100%;
+   padding: 2px;
+   margin-top:-12px
+}
+
+</style>
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+```
+
+
+##Capítulo 1
+
+
+<div class="texto1">
+
+>**Introdução ao software R**
+
+</div>
+
+*A linguagem [R](https://rstudio.com/products/rstudio/download/)^[Primeira nota de rodapé.] é bem intuitiva^[Segunda nota de rodapé.]. É possível fazer bastante^[Terceira nota de rodapé.] coisa à base da tentativa e erro! Além disso, grande parte do conhecimento é escalável, isto é, quando você aprende a utilizar um certo tipo de função, o aprendizado pode ser replicado para funções parecidas. Essa ideia ficará bem clara quando falarmos dos pacotes do tidyverse, como o dplyr e o ggplot2.*
+
+*Quando o aprendizado não for muito intuitivo ou a utilização de uma função for muito complicada, demandando às vezes conhecimento de Estatística ou Programação, você pode acabar precisando de uma forcinha. Felizmente, a comunidade R é bem ativa, e há várias formas de se conseguir ajuda. Nesta seção, vamos listar algumas dessas maneiras. Em seguida, faremos uma introdução ao RStudio, mostrando as suas principais funcionalidades. Então começaremos a conhecer o R, explorando diversos conceitos básicos.*
+
+![](https://www.youtube.com/watch?v=FViKizCOpaQ){width="900" height="360"}
+
+<br>
+
+<div class="texto1">
+
+> **Stack Overflow**
+
+</div>
+
+
+O [Stack Overflow](https://stackoverflow.com/) e o [Stack Overflow em Português](https://pt.stackoverflow.com/) são sites de Pergunta e Resposta amplamente utilizados por todas as linguagens de programação, e o R é uma delas. Nos EUA, chegam até a usar a reputação dos usuários como diferencial no currículo!
+
+Provavelmente o Google lhe indicará uma página deles quando você estiver procurando ajuda. E quando todas as fontes possíveis de ajuda falharem, o Stack Overflow lhe dará o espaço para **criar sua própria pergunta**.
+
+**Um ponto importante:** como fazer uma boa pergunta no Stack Overflow?
+
+No site, tem um tutorial com uma lista de boas práticas, que se encontra aqui. Algumas dicas são
+
+```{r letter-a, echo=FALSE}
+question("Selecione quais dicas você considera correta",
+  answer("Ser conciso", correct = TRUE),
+  answer("Ser específico", correct = TRUE),
+  answer("Ser rude", message = "Nunca se deve ser rude em foruns de programacao"),
+  answer("Não querer ajudar", message = "Foruns servem para as pessoas compartilharem seus conhecimentos")
+)
+```
+
+<br>
+
+<div class="texto1">
+
+> **Rstudios**
+
+</div>
+
+
+O RStudio é o melhor ambiente de desenvolvimento de códigos em R disponível. Você pode baixá-lo neste link.
+
+Muitas das ferramentas são aprendidas conforme o uso, e há bons materiais sobre o RStudio na internet (por exemplo, esta página). Uma funcionalidade importante é a criação de projetos, permitindo dividir o trabalho em múltiplos ambientes, cada um com o seu diretório, documentos e workspace. A seguir, apresentamos algumas funcionalidades do programa.
+
+```{r add-function, exercise=TRUE, exercise.lines = 5}
+add <- function(x,y) {
+  x+y
+}
+
+resultado = add(2,3)
+
+if(length(resultado)==1){print("Correto")}
+if(length(resultado)!=1){print("Ocorreu algum erro durante a substituição")}
+```
+
+<br>
+
+<div class="texto1">
+
+> **Exercício com gráfico**
+
+</div>
+
+
+Gráficos no R são tipicamente construídos com opções padrão definidas pelo programa, mas podem ser modificados ou ter elementos adicionados conforme desejado pelo usuário.
+A melhor forma para entender como modificar gráficos é pensar que cada elemento pode ser controlado por uma função, e elementos são adicionados ao gráfico para cada chamada de função específica, de forma semelhante ao que se faria ao desenhar em um papel. Um exemplo típico é a adição de legenda a um gráfico já feito, o que pode ser feito por legend().
+
+**NOTA:** Se algo já feito deve ser mudado então é necessário repetir os comandos anteriores um a um até chegar no que se deseja modificar. Este comportamento difere de alguns outros programas que permitem modificar um gráfico já desenhado.
+
+
+```{r, echo=FALSE}
+
+sidebarLayout(
+
+    # Sidebar with a slider input
+    sidebarPanel(
+      sliderInput("bins", "Numero de barras:", min = 1, max = 50, value = 30),
+      textAreaInput("caption", "Descricao", "Texto...", width = "250px"),
+
+      actionButton("Botao", "Enviar")
+      
+    ),
+
+    # Show a plot of the generated distribution
+    mainPanel(
+     plotOutput("distPlot"),
+     textOutput("text1")
+    )
+  )
+
+```
+
+
+```{r, context="server"}
+
+library(crayon)
+
+observeEvent(input$Botao, {
+output$text1 <- renderText({
+input$caption
+})})
+
+output$distPlot <- renderPlot({
+  x <- faithful[, 2]  # Old Faithful Geyser data
+  bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  hist(x, breaks = bins, col = "#75AADB", border = "white",
+         ylab = "Eixo Y",
+         xlab = "Eixo X",
+         main = "Grafico de Histograma")
+})
+
+```
+
+<br>
+
+## Capítulo 2
+
+<div class="texto1">
+
+> **Pacote ggplot**
+
+</div>
+
+O pacote *ggplot2* foi desenvolvido pelo Dr. Hadley Wickham (que desenvolveu diversos outros pacotes importantes para R como o (d)plyr por exemplo. Este pacote implementa uma nova maneira de criar gráficos a partir dos dados, trazendo o conceito de camadas (layers) para a sintaxe do R. Com esse novo conceito, surge também a necessidade de se organizar os dados de uma maneira que facilite a utilização da nova sintaxe. Para isso, os outros pacotes (como os já mencionados (d)plyr) foram desenvolvidos pelo Dr. Wickham de maneira a tornar a manipulação de dados mais ágil, intuitiva e já adequada para o uso conjunto com ggplot2.
+
+
+```{r dodge-st, fig.show = "hold", out.width = "50%"}
+library(ggplot2)
+
+ggplot(mtcars, aes(factor(cyl), fill = factor(vs))) +
+  geom_bar(position = position_dodge2(preserve = "single"))+
+  ggtitle("Grafico 1")
+
+ggplot(mtcars, aes(factor(cyl), fill = factor(vs))) +
+  geom_bar(position = position_dodge2(preserve = "total"))+
+  ggtitle("Grafico 2")
+```
+
+<br>
+
+<div class="texto1">
+
+> **Visualização de tabelas**
+
+</div>
+
+
+O trabalho do estatístico vai muito além do planejamento, sumarização e interpretação de observações para fornecer a melhor informação possível a partir do dados disponíveis. O processo de analises deve ser tratado na etapa final de todo projeto ou pesquisa que envolva apresentação dos resultados, não é atoa que já até existem áreas dentro da ciência de dados focada nesta tarefa, recebendo o título de “Data Artist”.
+
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+head(iris, n=10)
+```
+ 
+<br>
+ 
+<div class="texto1">
+
+> **Manipulação de imagens**
+
+</div>
+
+
+Para escrever parágrafos basta escrever o texto e após o ponto. Uma quebra de linha de linha pode ser feito com 2 espaços após o ponto final seguido de 1 Enter.
+
+<div class="polaroid2">
+  <img src="https://super.abril.com.br/wp-content/uploads/2018/05/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png" alt="5 Terre" style="width:100%;">
+  <div class="container">
+  <p>Cachorro numero 1</p>
+  </div>
+</div>
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.
+
+<br>
+
+<div class="polaroid3">
+  <img src="https://super.abril.com.br/wp-content/uploads/2018/05/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png" alt="5 Terre" style="width:100%;">
+  <div class="container2">
+  <p>  Cachorro numero 2</p>
+  </div>
+</div>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.
+
+<br>
+
+## Capítulo 3
+
+<div class="texto1">
+
+>**Fórmulas matemáticas**
+
+</div>
+
+Equações matemáticas podem ser escritas em formato LATEX. A página HTML resultante irá renderizar as equações através do MathJax.
+
+Equações na própria linha podem ser inseridas entre $:
+     
+     Um modelo de regressão linear simples:  $Y = \beta_0 + \beta_1 x + \epsilon$.
+
+Um modelo de regressão linear simples: $Y = \beta_0 + \beta_1 x + \epsilon$.
+
+Equações podem ser exibidas entre cifroes para ficarem centralizadas em uma linha própria:
+
+     $$f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }$$
+     
+$$
+f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}
+e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
+$$
+
+<br>
+
+<div class="texto1">
+
+>**Listas de Pontos**
+
+</div>
+
+As listas do pontos podem ser criadas começando cada linha com um asterisco seguido por um espaço antes do conteúdo do ponto. Note que o espaço é importante e não deve ser esquecido.
+
+    * Primeiro ponto
+    * Segundo ponto
+    * Terceiro ponto 
+
+* Primeiro ponto
+* Segundo ponto
+* Terceiro ponto 
+
+<br>
+
+<div class="texto1">
+
+>**Listas Numeradas**
+
+</div>
+
+Similarmente, listas numeradas podem ser criadas começando cada linha com um número seguido por um espaço e o texto respectivo.
+
+    1. Primeiro ponto
+    
+    2. Segundo ponto
+    
+    3. Terceiro ponto
+  
+1. Primeiro ponto
+
+2. Segundo ponto
+
+3. Terceiro ponto
+
+<br>
+
+<div class="texto1">
+
+>**Listas Identadas**
+
+</div>
+
+Pode agrupar listas numeradas ou de pontos, com diferentes níveis, e até misturar listas numeradas e de pontos, usando identação:
+
+    * Ponto um de alto nível
+      * Sub ponto  1
+      * Sub ponto  2 
+    * Ponto dois de alto nível  
+    
+    1. Ponto numerado um
+       1. Ponto numerado de nível dois  
+    2. Ponto número dois
+
+* Ponto um de alto nível
+    * Sub ponto  1
+    * Sub ponto  2 
+* Ponto dois de alto nível  
+
+1. Ponto numerado um
+    1. Ponto numerado de nível dois  
+2. Ponto número dois
+
+<br>
+
+## Capítulo 4
+
+<div class="texto1">
+
+>**Barras Horizontais**
+
+</div>
+
+As barras horizontais podem ser criadas colocando três ou mais asteriscos (*), hífenes (-) ou underscores (_) numa linha.
+
+Isto é suficiente:
+
+    * * *
+
+mas pode adicionar espaços ou mais caracteres para tornar mais evidente a quebra de secção na janela de edição de texto; ~~por exemplo~~:
+    
+    
+    * * * * *
+
+    -------------------------
+
+    _ _ _ _ _
+
+
+* * * * *
+
+-------------------------
+
+_ _ _ _ _
+
+<hr style="border:2px solid gray"> </hr>
+
+<hr style="border: dashed rgb(0,255,0) 1.0px;background-color: rgb(170,0,0);height: 15.0px;"/>
+
+<hr style="border: dashed 1px;"/>
+
+<br>
+
+
+<div class="texto1">
+
+>**Manipulação de gráficos**
+
+</div>
+
+<br>
+
+<div class="grafico">
+
+```{r, echo=FALSE,out.width = "110%",out.height = "300%"}
+
+fig <- plot_ly()
+fig <- fig %>% add_bars(
+    x = c("2016", "2017", "2018"),
+    y = c(500,600,700),
+    base = c(-500,-600,-700),
+    marker = list(
+      color = 'red'
+    ),
+    name = 'expenses'
+  )
+fig <- fig %>% add_bars(
+    x = c("2016", "2017", "2018"),
+    y = c(300,400,700),
+    base = 0,
+    marker = list(
+      color = 'blue'
+    ),
+    name = 'revenue'
+  )
+
+fig
+```
+
+</div>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.
+
+
+<br>
+
+<div class="texto1">
+
+>**Tabelas manuais**
+
+</div>
+
+
+|   Esquerda   |  Centralizado  |    Direita    |
+| :---         |     :---:      |          ---: |
+| git status   | git status     | git status    |
+| git diff     | git diff       | git diff      |
+
+
+<br>
+
+<div class="texto1">
+
+>**Opções extras de perguntas**
+
+</div>
+
+Para obter todas as possíveis combinações de "Quiz" acesse o  [link](https://rdrr.io/cran/learnr/f/inst/tutorials/quiz_question/quiz_question.Rmd).
+
+```{r letter-b}
+question_text(
+  "Please enter the word 'C0rrect' below:",
+  answer("correct", message = "Don't forget to capitalize"),
+  answer("c0rrect", message = "Don't forget to capitalize"),
+  answer("Correct", message = "Is it really an 'o'?"),
+  answer("C0rrect", correct = TRUE),
+  allow_retry = TRUE
+
+)
+```
+
+```{r letter-c}
+library(sortable)
+
+rank_ex <- sortable::question_rank(
+  "Sort the first 5 letters",
+  learnr::answer(LETTERS[1:5], correct = TRUE),
+  learnr::answer(rev(LETTERS[1:5]), correct = FALSE, "Other direction!")
+)
+
+question_ui_initialize.sortable_rank <- function(question, value, ...) {
+
+  if (!is.null(value)) {
+    # if an answer exists already, it should be displayed as is
+    labels <- value
+  } else {
+    # get the first answer
+    labels <- question$answers[[1]]$option
+
+    # if we should randomize the order
+    if (
+      isTRUE(question$random_answer_order)
+    ) {
+      # shuffle the options
+      labels <- sample(labels, length(labels))
+    }
+  }
+
+  # return the sortable htmlwidget
+  sortable::rank_list(
+    text = question$question,
+    input_id = question$ids$answer,
+    labels = labels,
+    options = question$options
+  )
+}
+
+question_ui_initialize(rank_ex, value = NULL)
+```
+
+
+## Capítulo 5
+
+
+<div class="texto1">
+
+>**Imagens lado a lado**
+
+</div>
+
+<div class="alignRow">
+
+<div class="imageColumn">
+<img src="https://diariodorio.com/wp-content/uploads/2020/02/montanha-de-escoria-696x467-1.jpg" alt="River" style="width:100%";/>
+</div>
+
+<div class="imageColumn">
+<img src="https://f.i.uol.com.br/fotografia/2019/06/14/15605472605d040fbc62ed4_1560547260_3x2_md.jpg" alt="Forest" style="width:100%";/>
+</div>
+
+<div class="imageColumn">
+<img src="https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg" alt="Mountains" style="width:100%";/>
+</div>
+
+<div class="imageColumn">
+<img src="https://bloximages.chicago2.vip.townnews.com/azdailysun.com/content/tncms/assets/v3/editorial/1/22/1226e7f6-b814-5872-a949-0107a7d42358/5de16d8aa4bdd.image.jpg?resize=1200%2C800" alt="Snow" style="width:100%";/>
+</div>
+
+</div>
+
+.
+
+<div class="texto1">
+
+>**Imagens personalizadas**
+
+</div>
+
+<div class="imageColumn2">
+
+  <img height="150" src="https://bloximages.chicago2.vip.townnews.com/azdailysun.com/content/tncms/assets/v3/editorial/1/22/1226e7f6-b814-5872-a949-0107a7d42358/5de16d8aa4bdd.image.jpg?resize=1200%2C800"alt="Mountains" style="width:100%";/>
+
+</div>
+
+<div class="imageColumn2">
+
+  <img height="150" src="https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg" alt="Snow" style="width:100%";/>
+  
+</div>
+
+<div class="imageColumn3">
+
+  <img height="250" src="https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg" alt="Snow" style="width:100%";/>
+  
+</div>
+
+.
+
+<div class="texto1">
+
+>**Bibliografia**
+
+</div>
+
+Em se tratando de referências e citações, em geral pouca dor de cabeça é coisa rara. No RMarkdown existem boas referências e uma delas chama a atenção: [Bibliografia e Citações](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html/).
+
+No diretório onde está o seu script RMarkdown, deixe um arquivo em extensão .bib com as referências do seu trabalho. Claro, há outras extensões… Mas é bom lembrar que há uma fonte fácil de referências em sintaxe .bib: o Google Scholar.
+
+É importante notar que para ter uma seção de Referências adicionamos nas primeiras linhas do código essa informação com o respectivo nome do arquivo .bib.
+
+Além disso, a princípio, a sequência de referências vai constar depois da última linha de código, a qual equivale propositalmente à seção de Referências.
+
+E que, assim como no Latex, um ícone bibliográfico aparece exclusivamente quando ele é referenciado. No meu script .bib existem três referências e eu vou referenciar apenas uma delas para que conste nesse arquivo, como uma forma didática e explicativa como sempre sugerem os sábios Silva and Prates (2016).
+
+## Capítulo 6
